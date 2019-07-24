@@ -1,14 +1,14 @@
 import React from 'react';
 import City from '../City';
+import { connect } from 'react-redux';
 
 const CityList = (props) => {
 
     const { cities, dell } = props;
     console.log(cities);
-    const list = cities.map((city, ind ) => {
-        // console.log('ID from CITYLIST: ', city.addId);
-        return <City key={ind} city={city} deleteCity={dell} />
-        });
+    const list = cities.map((city, ind ) =>
+        <City key={ind} city={city} deleteCity={dell} />
+    );
     return (
       <div>
           <ul>
@@ -18,4 +18,8 @@ const CityList = (props) => {
     );
 };
 
-export default CityList;
+const matStateToProps = state => ({
+    cities: state.data.cities
+});
+
+export default connect(matStateToProps)(CityList);
