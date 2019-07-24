@@ -1,9 +1,20 @@
 import React from 'react';
+import City from '../City';
 
-const CityList = () => {
+const CityList = (props) => {
 
-    return(
-      <h2>CityList</h2>
+    const { cities, dell } = props;
+    console.log(cities);
+    const list = cities.map((city, ind ) => {
+        // console.log('ID from CITYLIST: ', city.addId);
+        return <City key={ind} city={city} deleteCity={dell} />
+        });
+    return (
+      <div>
+          <ul>
+              {list}
+          </ul>
+      </div>
     );
 };
 

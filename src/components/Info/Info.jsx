@@ -1,9 +1,16 @@
 import React from 'react';
 
-const Info = () => {
+const Info = (props) => {
+
+    const { city, temp, info } = props.data;
 
     return(
-      <h3>Info</h3>
+      <div>
+        {info && <div>
+            <p>Город: {city}</p>
+            <p>Температура: {temp}</p>
+        </div>}
+      </div>
     );
 };
 

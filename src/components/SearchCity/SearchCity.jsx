@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const SearchCity = () => {
+class SearchCity extends Component {
 
-    return(
-        <h2>Search</h2>
-    );
-};
+    state = {
+        value: ''
+    };
+
+
+    changeValue = (e) => {
+        this.setState({
+           value: e.target.value
+        });
+    };
+
+    render() {
+        const { value } = this.state;
+        const { getData } = this.props;
+        return (
+            <div>
+                <input value={value} onChange={(e) => this.changeValue(e)}/>
+                <button onClick={() => getData(value)}>Find</button>
+            </div>
+        );
+    }
+}
 
 export default SearchCity;
