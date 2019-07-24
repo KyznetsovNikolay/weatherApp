@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import './style.css';
+import { Button } from 'react-bootstrap';
+
 
 class City extends Component {
 
@@ -11,21 +14,28 @@ class City extends Component {
     };
 
     render() {
-        const {city, temp, addId} = this.props.city;
+        const {city, addTemp, addId, addPressure} = this.props.city;
         const {deleteCity} = this.props;
         const { isOpen } = this.state;
-        console.log('Id from CITY: ', addId);
+
         return (
-            <li>
-                <div className='fl'>
-                    <h4 onClick={this.openText}>{city}</h4>
-                    <button onClick={() => deleteCity(addId)}>X</button>
+            <div className='cityBlock'>
+                <div>
+                    <div className='headBlock'>
+                        <h4 onClick={this.openText}>{city}</h4>
+                        <Button
+                            variant="outline-secondary"
+                            onClick={() => deleteCity(addId)}>x</Button>
+                    </div>
                 </div>
-                { isOpen && <div>
-                <p>Город: {city}</p>
-                <p>Температура: {temp}</p>
-                </div>}
-            </li>
+                <div className='addInfo'>
+                    { isOpen && <div>
+                    <p>Город: {city}</p>
+                    <p>Температура: {addTemp}</p>
+                    <p>Давление: {addPressure}</p>
+                    </div>}
+                </div>
+            </div>
         );
     }
 }

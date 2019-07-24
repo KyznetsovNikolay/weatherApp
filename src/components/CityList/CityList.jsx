@@ -5,21 +5,22 @@ import { connect } from 'react-redux';
 const CityList = (props) => {
 
     const { cities, dell } = props;
-    console.log(cities);
-    const list = cities.map((city, ind ) =>
-        <City key={ind} city={city} deleteCity={dell} />
-    );
+
+    const list = cities.map(city => {
+        const {addId} = city;
+        return <City key={addId}
+                     city={city}
+                     deleteCity={dell} />
+    });
     return (
       <div>
-          <ul>
-              {list}
-          </ul>
+          {list}
       </div>
     );
 };
 
-const matStateToProps = state => ({
+const mapStateToProps = state => ({
     cities: state.data.cities
 });
 
-export default connect(matStateToProps)(CityList);
+export default connect(mapStateToProps)(CityList);

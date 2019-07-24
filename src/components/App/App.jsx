@@ -1,37 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SearchCity from '../SearchCity';
 import CityList from '../CityList';
 import Info from '../Info';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../../actions/dataActions';
+import './style.css';
+import { Button } from 'react-bootstrap';
 
+const App = (props) => {
 
-class App extends Component {
+        const { city, temp, info, view, addedCity, pressure } = props;
+        const { getData, addCity, deleteCity } = props.actions;
+        const data = {city, temp, info, pressure};
 
-
-    render() {
-
-        const { city, temp, info, view, addedCity } = this.props;
-        const { getData, addCity, deleteCity } = this.props.actions;
-        const data = {city, temp, info};
-        return(
-            <div>
-                <SearchCity getData={getData}/>
-                {addedCity && <button onClick={addCity}>Добавить</button>}
-                <Info data={data}/>
-                {view && <CityList dell={deleteCity} />}
+    return (
+        <div className='alignCenter'>
+            <h2>Погода в вашем городе</h2>
+            <SearchCity getData={getData}/>
+            <div className='butt'>
+                <div className='b1'></div>
+                {addedCity && <Button
+                    variant="light"
+                    onClick={addCity}>Добавить</Button>}
             </div>
-        );
-    }
-}
+            <Info data={data}/>
+            {view && <CityList dell={deleteCity} />}
+        </div>
+    );
+};
 
 const mapStateToProps = state => ({
     city: state.data.city,
     temp: state.data.temp,
     info: state.data.info,
     view: state.data.view,
-    addedCity: state.data.addedCity
+    addedCity: state.data.addedCity,
+    pressure: state.data.pressure
 });
 
 const mapDispatchToProps = dispatch => ({

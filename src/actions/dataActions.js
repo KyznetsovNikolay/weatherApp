@@ -13,8 +13,8 @@ const actions = {
                 if(city) {
                   const weather = await (await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${baseKey}&units=metric`)).data;
                   console.log(weather);
-                  const {name, main: {temp}, id} = weather;
-                  const allData = { name, temp, id };
+                  const { name, main: { temp, pressure }, id } = weather;
+                  const allData = { name, temp, id, pressure };
                   localStorage.setItem(name, JSON.stringify(weather));
 
                    dispatch({

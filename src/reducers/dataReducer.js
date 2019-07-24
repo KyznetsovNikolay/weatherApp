@@ -12,13 +12,14 @@ const initialState = {
     cities: [],
     addedCity: false,
     view: false,
+    pressure: '',
     error: ''
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_NEW_CITY_DATA_SUCCESS:
-            const { name, temp, id } = action.payload;
+            const { name, temp, id, pressure } = action.payload;
             return {
                 ...state,
                 city: name,
@@ -26,6 +27,7 @@ const reducer = (state = initialState, action) => {
                 info: true,
                 addedCity: true,
                 id,
+                pressure
             };
         case GET_NEW_CITY_DATA_FAILED:
             return  {
@@ -33,8 +35,8 @@ const reducer = (state = initialState, action) => {
                 error: action.error
             };
         case ADD_CITY_IN_LIST:
-                const { city, temp: addTemp, cities, id: addId} = state;
-                const newCity = { city, addTemp, addId };
+                const { city, temp: addTemp, cities, id: addId, pressure: addPressure} = state;
+                const newCity = { city, addTemp, addId, addPressure };
                 console.log(city, addTemp);
                 const newArrayCity = [...cities, newCity];
 

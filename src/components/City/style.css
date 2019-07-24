@@ -1,0 +1,21 @@
+.cityBlock {
+    width: 300px;
+    margin: 20px auto;
+    border: 1px solid #c7c7c7;
+    border-radius: 6px;
+}
+
+.headBlock {
+    display: flex;
+    justify-content: space-between;
+    background-color: #d2d2d2;
+    padding: 10px;
+}
+
+.headBlock h4 {
+    width: 250px;
+    cursor: pointer;
+}
+.addInfo {
+    padding: 10px;
+}
